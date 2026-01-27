@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Antique Restoration Shop</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    
+    <style>
+        .gallery-hero {
+            background: linear-gradient(135deg, rgba(62, 39, 35, 0.9) 0%, rgba(212, 175, 55, 0.8) 100%),
+                        url('https://picsum.photos/seed/gallery-hero/1920/600') center/cover;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(62, 39, 35, 0.9) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .filter-btn {
+            background: transparent;
+            border: 2px solid #D4AF37;
+            color: #3E2723;
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin: 5px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #D4AF37;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .before-after-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+        
+        .before-after-slider {
+            position: relative;
+            width: 100%;
+            height: 400px;
+        }
+        
+        .before-after-slider img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .after-image {
+            clip-path: inset(0 50% 0 0);
+            transition: clip-path 0.3s ease;
+        }
+        
+        .slider-handle {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: #D4AF37;
+            cursor: ew-resize;
+            z-index: 10;
+        }
+        
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: #D4AF37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            padding: 20px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 5px;
+        }
+        
+        .lightbox-prev {
+            left: 20px;
+        }
+        
+        .lightbox-next {
+            right: 20px;
+        }
+        
+        .category-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #D4AF37;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 5;
+        }
+        
+        .featured-gallery {
+            background: linear-gradient(135deg, rgba(255,248,231,0.9) 0%, rgba(255,253,247,0.9) 100%);
+        }
+    </style>
+</head>
+<body class="bg-cream-white">
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #3E2723;">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html" style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #D4AF37 !important;">
+                <i class="fas fa-crown me-2" style="color: #D4AF37;"></i>
+                Antique Restoration
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Home
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="homeDropdown">
+                            <li><a class="dropdown-item" href="index.html">Home1</a></li>
+                            <li><a class="dropdown-item" href="index-modern.html">Home2</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Pages
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="pagesDropdown">
+                            <li><a class="dropdown-item" href="services.html">Services</a></li>
+                            <li><a class="dropdown-item" href="process.html">Process</a></li>
+                            <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="quote.html">Request Quote</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin.html">
+                            <i class="fas fa-crown me-1"></i>
+                            Admin
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light btn-sm ms-2" href="login.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-warning btn-sm ms-2" href="register.html" style="background-color: var(--antique-gold); border-color: var(--antique-gold);">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gallery-hero vh-50 d-flex align-items-center" style="margin-top: 30px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center text-white" data-aos="fade-up">
+                    <h1 class="display-3 font-playfair fw-bold mb-4">
+                        Our Restoration Gallery
+                    </h1>
+                    <p class="lead fs-4">
+                        Witness the transformation of timeless treasures
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Before/After -->
+    <section class="featured-gallery py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-4 font-playfair fw-bold text-vintage-brown mb-3">
+                    Featured Transformations
+                </h2>
+                <div class="w-25 mx-auto border-bottom border-3" style="border-color: #D4AF37 !important;"></div>
+                <p class="lead text-muted mt-3">Drag the slider to see before and after</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-8 mx-auto" data-aos="zoom-in">
+                    <div class="before-after-container">
+                        <div class="before-after-slider" id="featuredSlider">
+                            <img src="https://picsum.photos/seed/before-featured/800/400" alt="Before Restoration" class="before-image">
+                            <img src="https://picsum.photos/seed/after-featured/800/400" alt="After Restoration" class="after-image">
+                            <div class="slider-handle">
+                                <div class="slider-button">
+                                    <i class="fas fa-arrows-alt-h"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-3">
+                            <span class="badge bg-secondary me-2">Before</span>
+                            <span class="badge" style="background-color: #D4AF37;">After</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Buttons -->
+    <section class="py-4">
+        <div class="container">
+            <div class="text-center" data-aos="fade-up">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="furniture">Furniture</button>
+                <button class="filter-btn" data-filter="chairs">Chairs</button>
+                <button class="filter-btn" data-filter="tables">Tables</button>
+                <button class="filter-btn" data-filter="clocks">Clocks</button>
+                <button class="filter-btn" data-filter="metalwork">Metalwork</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row" id="galleryGrid">
+                <!-- Gallery Item 1 -->
+                <div class="col-lg-4 col-md-6 gallery-item" data-category="furniture" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="category-badge">Furniture</div>
+                    <img src="https://picsum.photos/seed/gallery1/400/300" alt="Victorian Chair" class="img-fluid">
+                    <div class="gallery-overlay">
+                        <h5 class="text-white font-playfair">Victorian Armchair</h5>
+                        <p class="text-white-50 small">Complete restoration with original upholstery</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 2 -->
+                <div class="col-lg-4 col-md-6 gallery-item" data-category="tables" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="category-badge">Tables</div>
+                    <img src="https://picsum.photos/seed/gallery2/400/300" alt="Mahogany Table" class="img-fluid">
+                    <div class="gallery-overlay">
+                        <h5 class="text-white font-playfair">Mahogany Dining Table</h5>
+                        <p class="text-white-50 small">Refinished and structural repairs</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 3 -->
+                <div class="col-lg-4 col-md-6 gallery-item" data-category="chairs" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="category-badge">Chairs</div>
+                    <img src="https://picsum.photos/seed/gallery3/400/300" alt="Antique Chairs" class="img-fluid">
+                    <div class="gallery-overlay">
+                        <h5 class="text-white font-playfair">Set of 6 Dining Chairs</h5>
+                        <p class="text-white-50 small">Upholstery and wood restoration</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 4 -->
+                <div class="col-lg-4 col-md-6 gallery-item" data-category="clocks" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="category-badge">Clocks</div>
+                    <img src="https://picsum.photos/seed/gallery4/400/300" alt="Grandfather Clock" class="img-fluid">
+                    <div class="gallery-overlay">
+                        <h5 class="text-white font-playfair">Grandfather Clock</h5>
+                        <p class="text-white-50 small">Mechanism restoration and case refinishing</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 5 -->
+                <div class="col-lg-4 col-md-6 gallery-item" data-category="metalwork" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="category-badge">Metalwork</div>
+                    <img src="https://picsum.photos/seed/gallery5/400/300" alt="Brass Lamp" class="img-fluid">
+                    <div class="gallery-overlay">
+                        <h5 class="text-white font-playfair">Brass Floor Lamp</h5>
+                        <p class="text-white-50 small">Polishing and electrical restoration</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 6 -->
+                <div class="col-lg-4 col-md-6 gallery-item" data-category="furniture" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="category-badge">Furniture</div>
+                    <img src="https://picsum.photos/seed/gallery6/400/300" alt="Cabinet" class="img-fluid">
+                    <div class="gallery-overlay">
+                        <h5 class="text-white font-playfair">Antique Cabinet</h5>
+                        <p class="text-white-50 small">Complete restoration with new hardware</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 7 -->
+                <div class="col-lg-4 col-md-6 gallery-item" data-category="chairs" data-aos="zoom-in" data-aos-delay="700">
+                    <div class="category-badge">Chairs</div>
+                    <img src="https://picsum.photos/seed/gallery7/400/300" alt="Rocking Chair" class="img-fluid">
+                    <div class="gallery-overlay">
+                        <h5 class="text-white font-playfair">Victorian Rocking Chair</h5>
+                        <p class="text-white-50 small">Structural repairs and new finish</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 8 -->
+                <div class="col-lg-4 col-md-6 gallery-item" data-category="tables" data-aos="zoom-in" data-aos-delay="800">
+                    <div class="category-badge">Tables</div>
+                    <img src="https://picsum.photos/seed/gallery8/400/300" alt="Side Table" class="img-fluid">
+                    <div class="gallery-overlay">
+                        <h5 class="text-white font-playfair">Marble Top Side Table</h5>
+                        <p class="text-white-50 small">Base restoration and marble polishing</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 9 -->
+                <div class="col-lg-4 col-md-6 gallery-item" data-category="metalwork" data-aos="zoom-in" data-aos-delay="900">
+                    <div class="category-badge">Metalwork</div>
+                    <img src="https://picsum.photos/seed/gallery9/400/300" alt="Chandelier" class="img-fluid">
+                    <div class="gallery-overlay">
+                        <h5 class="text-white font-playfair">Crystal Chandelier</h5>
+                        <p class="text-white-50 small">Cleaning and rewiring</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-content">
+            <img src="" alt="" id="lightboxImage">
+        </div>
+        <div class="lightbox-nav lightbox-prev">&#10094;</div>
+        <div class="lightbox-nav lightbox-next">&#10095;</div>
+    </div>
+
+    <!-- Call to Action -->
+    <section class="py-5 text-white" style="background-color: #D4AF37;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8" data-aos="fade-right">
+                    <h2 class="display-5 font-playfair fw-bold mb-3">
+                        Inspired by Our Work?
+                    </h2>
+                    <p class="lead mb-0">
+                        Let us restore your antique to its former glory.
+                    </p>
+                </div>
+                <div class="col-lg-4 text-lg-end" data-aos="fade-left">
+                    <a href="quote.html" class="btn btn-light btn-lg px-4 py-3 text-vintage-brown">
+                        Get Quote
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-vintage-brown text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="font-playfair mb-3">
+                        <i class="fas fa-crown text-antique-gold me-2"></i>
+                        Antique Restoration Shop
+                    </h5>
+                    <p class="small">
+                        Preserving history through expert craftsmanship and restoration services.
+                    </p>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h6 class="font-playfair mb-3">Quick Links</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="index.html" class="text-white-50 text-decoration-none">Home</a></li>
+                        <li><a href="about.html" class="text-white-50 text-decoration-none">About</a></li>
+                        <li><a href="services.html" class="text-white-50 text-decoration-none">Services</a></li>
+                        <li><a href="contact.html" class="text-white-50 text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h6 class="font-playfair mb-3">Contact Info</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2">
+                            <i class="fas fa-map-marker-alt text-antique-gold me-2"></i>
+                            123 Heritage Lane, Craft District
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-phone text-antique-gold me-2"></i>
+                            +1 (555) 123-4567
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-envelope text-antique-gold me-2"></i>
+                            info@antiquerestoration.com
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="border-secondary">
+            <div class="text-center small">
+                <p class="mb-0">&copy; 2026 Antique Restoration Shop. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/main.js"></script>
+    
+    <script>
+        // Gallery Filter
+        $(document).ready(function() {
+            $('.filter-btn').on('click', function() {
+                const filter = $(this).data('filter');
+                
+                $('.filter-btn').removeClass('active');
+                $(this).addClass('active');
+                
+                if (filter === 'all') {
+                    $('.gallery-item').fadeIn(300);
+                } else {
+                    $('.gallery-item').hide();
+                    $(`.gallery-item[data-category="${filter}"]`).fadeIn(300);
+                }
+            });
+            
+            // Lightbox functionality
+            let currentImageIndex = 0;
+            const galleryImages = [];
+            
+            $('.gallery-item').each(function() {
+                const imgSrc = $(this).find('img').attr('src');
+                galleryImages.push(imgSrc);
+            });
+            
+            $('.gallery-item').on('click', function() {
+                const imgSrc = $(this).find('img').attr('src');
+                currentImageIndex = galleryImages.indexOf(imgSrc);
+                showLightbox(imgSrc);
+            });
+            
+            function showLightbox(src) {
+                $('#lightboxImage').attr('src', src);
+                $('#lightbox').fadeIn(300);
+            }
+            
+            $('.lightbox-close, #lightbox').on('click', function(e) {
+                if (e.target === this) {
+                    $('#lightbox').fadeOut(300);
+                }
+            });
+            
+            $('.lightbox-next').on('click', function() {
+                currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+                $('#lightboxImage').attr('src', galleryImages[currentImageIndex]);
+            });
+            
+            $('.lightbox-prev').on('click', function() {
+                currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+                $('#lightboxImage').attr('src', galleryImages[currentImageIndex]);
+            });
+            
+            // Featured Before/After Slider
+            let isDragging = false;
+            const slider = $('#featuredSlider');
+            const handle = slider.find('.slider-handle');
+            const afterImage = slider.find('.after-image');
+            const sliderWidth = slider.width();
+            
+            function updateSlider(x) {
+                const percentage = (x / sliderWidth) * 100;
+                if (percentage >= 0 && percentage <= 100) {
+                    handle.css('left', percentage + '%');
+                    afterImage.css('clip-path', `inset(0 ${100 - percentage}% 0 0)`);
+                }
+            }
+            
+            handle.on('mousedown', function(e) {
+                isDragging = true;
+                e.preventDefault();
+            });
+            
+            $(document).on('mousemove', function(e) {
+                if (isDragging) {
+                    const rect = slider[0].getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    updateSlider(x);
+                }
+            });
+            
+            $(document).on('mouseup', function() {
+                isDragging = false;
+            });
+            
+            // Touch support for mobile
+            handle.on('touchstart', function(e) {
+                isDragging = true;
+                e.preventDefault();
+            });
+            
+            $(document).on('touchmove', function(e) {
+                if (isDragging) {
+                    const touch = e.touches[0];
+                    const rect = slider[0].getBoundingClientRect();
+                    const x = touch.clientX - rect.left;
+                    updateSlider(x);
+                }
+            });
+            
+            $(document).on('touchend', function() {
+                isDragging = false;
+            });
+        });
+    </script>
+</body>
+</html>

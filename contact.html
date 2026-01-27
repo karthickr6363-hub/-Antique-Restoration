@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Antique Restoration Shop</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    
+    <style>
+        .contact-hero {
+            background: linear-gradient(135deg, rgba(62, 39, 35, 0.9) 0%, rgba(212, 175, 55, 0.8) 100%),
+                        url('https://picsum.photos/seed/contact-hero/1920/600') center/cover;
+        }
+        
+        .contact-section {
+            background: linear-gradient(135deg, #FFF8E7 0%, #FFFDF7 100%);
+        }
+        
+        .info-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .info-card:hover {
+            border-left-color: #D4AF37;
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .contact-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .info-card:hover .contact-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+        
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #D4AF37;
+            box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25);
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: #3E2723;
+            margin-bottom: 0.5rem;
+        }
+        
+        .required {
+            color: #dc3545;
+        }
+        
+        .map-container {
+            height: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .workshop-hours {
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        
+        .day-schedule {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .day-schedule:last-child {
+            border-bottom: none;
+        }
+        
+        .day-schedule.today .day {
+            font-weight: bold;
+            color: #D4AF37;
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            color: white;
+        }
+        
+        .social-contact {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.1);
+            color: #D4AF37;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+        }
+        
+        .social-contact:hover {
+            background: #D4AF37;
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .message-success {
+            display: none;
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .loading-spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #D4AF37;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-cream-white">
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #3E2723;">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html" style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #D4AF37 !important;">
+                <i class="fas fa-crown me-2" style="color: #D4AF37;"></i>
+                Antique Restoration
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Home
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="homeDropdown">
+                            <li><a class="dropdown-item" href="index.html">Home1</a></li>
+                            <li><a class="dropdown-item" href="index-modern.html">Home2</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Pages
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="pagesDropdown">
+                            <li><a class="dropdown-item" href="services.html">Services</a></li>
+                            <li><a class="dropdown-item" href="process.html">Process</a></li>
+                            <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="quote.html">Request Quote</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin.html">
+                            <i class="fas fa-crown me-1"></i>
+                            Admin
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light btn-sm ms-2" href="login.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-warning btn-sm ms-2" href="register.html" style="background-color: var(--antique-gold); border-color: var(--antique-gold);">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="contact-hero vh-50 d-flex align-items-center" style="margin-top: 30px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center text-white" data-aos="fade-up">
+                    <h1 class="display-3 font-playfair fw-bold mb-4">
+                        Get in Touch
+                    </h1>
+                    <p class="lead fs-4">
+                        Visit our workshop or contact us for expert antique restoration services
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="contact-section py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-4 font-playfair fw-bold text-vintage-brown mb-3">
+                    Visit Our Workshop
+                </h2>
+                <div class="w-25 mx-auto border-bottom border-3" style="border-color: #D4AF37 !important;"></div>
+            </div>
+            
+            <div class="row g-4 mb-5">
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="info-card bg-white rounded-4 p-4 h-100">
+                        <div class="contact-icon text-center mb-3">
+                            <i class="fas fa-map-marker-alt fa-3x" style="color: #D4AF37;"></i>
+                        </div>
+                        <h5 class="font-playfair text-center mb-3">Workshop Location</h5>
+                        <p class="text-center text-muted">
+                            123 Heritage Lane<br>
+                            Craft District<br>
+                            New York, NY 10001
+                        </p>
+                        <div class="text-center">
+                            <button class="btn btn-sm" style="color: #D4AF37;" onclick="openMaps()">
+                                <i class="fas fa-directions me-1"></i> Get Directions
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="info-card bg-white rounded-4 p-4 h-100">
+                        <div class="contact-icon text-center mb-3">
+                            <i class="fas fa-phone fa-3x" style="color: #D4AF37;"></i>
+                        </div>
+                        <h5 class="font-playfair text-center mb-3">Phone & Email</h5>
+                        <p class="text-center text-muted">
+                            <strong>Phone:</strong> +1 (555) 123-4567<br>
+                            <strong>Email:</strong> info@antiquerestoration.com<br>
+                            <strong>Emergency:</strong> +1 (555) 999-0000
+                        </p>
+                        <div class="text-center">
+                            <a href="tel:+15551234567" class="btn btn-sm" style="color: #D4AF37;">
+                                <i class="fas fa-phone me-1"></i> Call Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="info-card bg-white rounded-4 p-4 h-100">
+                        <div class="contact-icon text-center mb-3">
+                            <i class="fas fa-clock fa-3x" style="color: #D4AF37;"></i>
+                        </div>
+                        <h5 class="font-playfair text-center mb-3">Workshop Hours</h5>
+                        <div class="workshop-hours">
+                            <div class="day-schedule">
+                                <span class="day">Monday - Friday</span>
+                                <span class="time">9:00 AM - 6:00 PM</span>
+                            </div>
+                            <div class="day-schedule">
+                                <span class="day">Saturday</span>
+                                <span class="time">10:00 AM - 4:00 PM</span>
+                            </div>
+                            <div class="day-schedule">
+                                <span class="day">Sunday</span>
+                                <span class="time">Closed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map and Form Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Map -->
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h3 class="font-playfair mb-3">Find Us</h3>
+                    <div class="map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9663095919355!2d-74.00425878459418!3d40.748440979330405!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1635959047153!5m2!1sen!2sus"
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                    <div class="mt-3">
+                        <p class="small text-muted">
+                            <i class="fas fa-info-circle me-1"></i>
+                            Free parking available on-site. Wheelchair accessible entrance.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="col-lg-6" data-aos="fade-left">
+                    <h3 class="font-playfair mb-3">Send Us a Message</h3>
+                    <div class="message-success" id="successMessage">
+                        <i class="fas fa-check-circle me-2"></i>
+                        Thank you for your message! We'll get back to you within 24 hours.
+                    </div>
+                    
+                    <form id="contactForm" class="needs-validation" novalidate>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="firstName" class="form-label">First Name <span class="required">*</span></label>
+                                <input type="text" class="form-control" id="firstName" required>
+                                <div class="invalid-feedback">Please enter your first name.</div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="lastName" class="form-label">Last Name <span class="required">*</span></label>
+                                <input type="text" class="form-control" id="lastName" required>
+                                <div class="invalid-feedback">Please enter your last name.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address <span class="required">*</span></label>
+                            <input type="email" class="form-control" id="email" required>
+                            <div class="invalid-feedback">Please enter a valid email address.</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone" placeholder="(555) 123-4567">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">Subject <span class="required">*</span></label>
+                            <select class="form-select" id="subject" required>
+                                <option value="">Select a subject...</option>
+                                <option value="restoration-quote">Restoration Quote</option>
+                                <option value="general-inquiry">General Inquiry</option>
+                                <option value="appointment">Schedule Appointment</option>
+                                <option value="partnership">Partnership Opportunity</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <div class="invalid-feedback">Please select a subject.</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message <span class="required">*</span></label>
+                            <textarea class="form-control" id="message" rows="5" 
+                                      placeholder="Tell us about your antique restoration needs..." required></textarea>
+                            <div class="invalid-feedback">Please enter your message.</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="newsletter">
+                                <label class="form-check-label" for="newsletter">
+                                    I'd like to receive restoration tips and updates via email.
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-lg" style="background-color: #D4AF37; color: white;">
+                                <span id="submitText">Send Message</span>
+                                <div class="loading-spinner" id="loadingSpinner"></div>
+                                <i class="fas fa-paper-plane ms-2" id="submitIcon"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Section -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h3 class="font-playfair mb-3">Connect With Us</h3>
+                <p class="text-muted">Follow us on social media for restoration tips and project updates</p>
+            </div>
+            
+            <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                <a href="#" class="social-contact">
+                    <i class="fab fa-facebook-f fa-lg"></i>
+                </a>
+                <a href="#" class="social-contact">
+                    <i class="fab fa-instagram fa-lg"></i>
+                </a>
+                <a href="#" class="social-contact">
+                    <i class="fab fa-twitter fa-lg"></i>
+                </a>
+                <a href="#" class="social-contact">
+                    <i class="fab fa-linkedin-in fa-lg"></i>
+                </a>
+                <a href="#" class="social-contact">
+                    <i class="fab fa-youtube fa-lg"></i>
+                </a>
+                <a href="#" class="social-contact">
+                    <i class="fab fa-pinterest fa-lg"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-5 contact-section">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h3 class="font-playfair mb-3">Frequently Asked Questions</h3>
+                <p class="text-muted">Quick answers to common questions</p>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="100">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    Do you offer pickup and delivery services?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, we offer complimentary pickup and delivery services for projects over $500. 
+                                    For smaller items, we can arrange pickup for a small fee within the metropolitan area.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="200">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    How long does a typical restoration take?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Restoration timelines vary depending on the complexity of the piece. Simple repairs may take 
+                                    2-3 weeks, while comprehensive restorations can take 8-12 weeks. We provide detailed timelines 
+                                    during the consultation phase.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="300">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    Do you provide written estimates?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Absolutely! We provide detailed written estimates after examining your piece. 
+                                    The estimate includes all costs, materials, and timeline. There are no hidden fees.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/15551234567?text=Hi! I'm interested in your antique restoration services." 
+       class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer class="bg-vintage-brown text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="font-playfair mb-3">
+                        <i class="fas fa-crown text-antique-gold me-2"></i>
+                        Antique Restoration Shop
+                    </h5>
+                    <p class="small">
+                        Preserving history through expert craftsmanship and restoration services.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h6 class="font-playfair mb-3">Quick Links</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="index.html" class="text-white-50 text-decoration-none">Home</a></li>
+                        <li><a href="about.html" class="text-white-50 text-decoration-none">About</a></li>
+                        <li><a href="services.html" class="text-white-50 text-decoration-none">Services</a></li>
+                        <li><a href="gallery.html" class="text-white-50 text-decoration-none">Gallery</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h6 class="font-playfair mb-3">Contact Info</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2">
+                            <i class="fas fa-map-marker-alt text-antique-gold me-2"></i>
+                            123 Heritage Lane, Craft District
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-phone text-antique-gold me-2"></i>
+                            +1 (555) 123-4567
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-envelope text-antique-gold me-2"></i>
+                            info@antiquerestoration.com
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="border-secondary">
+            <div class="text-center small">
+                <p class="mb-0">&copy; 2026 Antique Restoration Shop. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/main.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Set today's schedule as highlighted
+            const today = new Date().getDay();
+            const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            $('.day-schedule').each(function() {
+                const dayText = $(this).find('.day').text();
+                if (dayText.includes(dayNames[today])) {
+                    $(this).addClass('today');
+                }
+            });
+            
+            // Contact form submission
+            $('#contactForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                const form = $(this)[0];
+                if (form.checkValidity()) {
+                    // Show loading state
+                    $('#submitText').text('Sending...');
+                    $('#loadingSpinner').show();
+                    $('#submitIcon').hide();
+                    
+                    // Simulate form submission
+                    setTimeout(function() {
+                        // Hide loading state
+                        $('#submitText').text('Send Message');
+                        $('#loadingSpinner').hide();
+                        $('#submitIcon').show();
+                        
+                        // Show success message
+                        $('#successMessage').fadeIn();
+                        
+                        // Reset form
+                        form.reset();
+                        form.classList.remove('was-validated');
+                        
+                        // Scroll to top of form
+                        $('html, body').animate({
+                            scrollTop: $('#contactForm').offset().top - 100
+                        }, 500);
+                        
+                        // Hide success message after 5 seconds
+                        setTimeout(function() {
+                            $('#successMessage').fadeOut();
+                        }, 5000);
+                    }, 2000);
+                } else {
+                    form.classList.add('was-validated');
+                }
+            });
+        });
+        
+        // Open maps in new tab
+        function openMaps() {
+            window.open('https://maps.google.com/?q=Empire+State+Building+New+York', '_blank');
+        }
+    </script>
+</body>
+</html>

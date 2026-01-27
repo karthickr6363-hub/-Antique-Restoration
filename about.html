@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Antique Restoration Shop</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    
+    <style>
+        .story-section {
+            background: linear-gradient(135deg, rgba(255,248,231,0.9) 0%, rgba(255,253,247,0.9) 100%), 
+                        url('https://picsum.photos/seed/vintage-workshop/1920/800') center/cover;
+        }
+        
+        .philosophy-card {
+            transition: all 0.4s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .philosophy-card:hover {
+            border-left-color: #D4AF37;
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .team-member {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .team-member::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .team-member:hover::before {
+            left: 100%;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .workshop-tour {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tour-overlay {
+            background: linear-gradient(to bottom, transparent 0%, rgba(62, 39, 35, 0.8) 100%);
+        }
+        
+        .certification-badge {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .certification-badge:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .timeline-vertical {
+            position: relative;
+        }
+        
+        .timeline-vertical::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #D4AF37, #3E2723);
+            transform: translateX(-50%);
+        }
+        
+        @media (max-width: 768px) {
+            .timeline-vertical::before {
+                left: 30px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-cream-white">
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #3E2723;">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html" style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #D4AF37 !important;">
+                <i class="fas fa-crown me-2" style="color: #D4AF37;"></i>
+                Antique Restoration
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Home
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="homeDropdown">
+                            <li><a class="dropdown-item" href="index.html">Home1</a></li>
+                            <li><a class="dropdown-item" href="index-modern.html">Home2</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Pages
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="pagesDropdown">
+                            <li><a class="dropdown-item" href="services.html">Services</a></li>
+                            <li><a class="dropdown-item" href="process.html">Process</a></li>
+                            <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="quote.html">Request Quote</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin.html">
+                            <i class="fas fa-crown me-1"></i>
+                            Admin
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light btn-sm ms-2" href="login.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-warning btn-sm ms-2" href="register.html" style="background-color: var(--antique-gold); border-color: var(--antique-gold);">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section vh-50 d-flex align-items-center" style="margin-top: 30px; background: linear-gradient(135deg, #3E2723 0%, #D4AF37 100%);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center text-white" data-aos="fade-up">
+                    <h1 class="display-3 font-playfair fw-bold mb-4">
+                        Our Story
+                    </h1>
+                    <p class="lead fs-4">
+                        Three generations of craftsmanship dedicated to preserving history's finest treasures
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story -->
+    <section class="story-section py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h2 class="display-4 font-playfair fw-bold text-vintage-brown mb-4">
+                        A Legacy of Excellence
+                    </h2>
+                    <div class="lead text-vintage-brown mb-4">
+                        <p class="mb-3">
+                            Founded in 2001 by master craftsman James Mitchell, our restoration shop began as a small 
+                            family workshop dedicated to preserving the beauty of antique furniture. What started as a 
+                            passion project has grown into one of the most respected restoration studios in the region.
+                        </p>
+                        <p class="mb-3">
+                            Today, we continue the tradition of excellence that James established, combining time-honored 
+                            techniques with modern conservation science. Each piece that enters our workshop tells a story, 
+                            and we consider it our privilege to give these stories new life.
+                        </p>
+                        <p>
+                            From Victorian armchairs to Art Deco cabinets, our team has restored over 1,250 pieces, 
+                            each with its own unique challenges and rewards. We don't just repair furniture; we revive 
+                            memories, preserve heritage, and create legacies for future generations.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="timeline-vertical py-5">
+                        <div class="timeline-item mb-5" data-aos="fade-up" data-aos-delay="100">
+                            <div class="d-flex align-items-center">
+                                <div class="timeline-dot me-4">
+                                    <div class="w-16 h-16 rounded-full d-flex align-items-center justify-center" 
+                                         style="background-color: #D4AF37;">
+                                        <span class="text-white fw-bold">2001</span>
+                                    </div>
+                                </div>
+                                <div class="timeline-content">
+                                    <h5 class="font-playfair">The Beginning</h5>
+                                    <p class="text-muted">James Mitchell opens his first workshop</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item mb-5" data-aos="fade-up" data-aos-delay="200">
+                            <div class="d-flex align-items-center">
+                                <div class="timeline-dot me-4">
+                                    <div class="w-16 h-16 rounded-full d-flex align-items-center justify-center" 
+                                         style="background-color: #D4AF37;">
+                                        <span class="text-white fw-bold">2010</span>
+                                    </div>
+                                </div>
+                                <div class="timeline-content">
+                                    <h5 class="font-playfair">Expansion</h5>
+                                    <p class="text-muted">Workshop expansion and team growth</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item mb-5" data-aos="fade-up" data-aos-delay="300">
+                            <div class="d-flex align-items-center">
+                                <div class="timeline-dot me-4">
+                                    <div class="w-16 h-16 rounded-full d-flex align-items-center justify-center" 
+                                         style="background-color: #D4AF37;">
+                                        <span class="text-white fw-bold">2020</span>
+                                    </div>
+                                </div>
+                                <div class="timeline-content">
+                                    <h5 class="font-playfair">Innovation</h5>
+                                    <p class="text-muted">Integration of modern conservation techniques</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
+                            <div class="d-flex align-items-center">
+                                <div class="timeline-dot me-4">
+                                    <div class="w-16 h-16 rounded-full d-flex align-items-center justify-center" 
+                                         style="background-color: #D4AF37;">
+                                        <span class="text-white fw-bold">2026</span>
+                                    </div>
+                                </div>
+                                <div class="timeline-content">
+                                    <h5 class="font-playfair">Today</h5>
+                                    <p class="text-muted">Leading restoration studio with 15 master craftsmen</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Restoration Philosophy -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-4 font-playfair fw-bold text-vintage-brown mb-3">
+                    Our Philosophy
+                </h2>
+                <div class="w-25 mx-auto border-bottom border-3" style="border-color: #D4AF37 !important;"></div>
+                <p class="lead text-muted mt-3">The principles that guide every restoration</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="philosophy-card p-4 h-100 bg-light rounded-3">
+                        <div class="text-center mb-3">
+                            <i class="fas fa-history fa-3x" style="color: #D4AF37;"></i>
+                        </div>
+                        <h4 class="font-playfair text-center mb-3">Authenticity First</h4>
+                        <p class="text-center text-muted">
+                            We preserve the original character and integrity of each piece, using period-appropriate 
+                            materials and techniques whenever possible.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="philosophy-card p-4 h-100 bg-light rounded-3">
+                        <div class="text-center mb-3">
+                            <i class="fas fa-hand-holding-heart fa-3x" style="color: #D4AF37;"></i>
+                        </div>
+                        <h4 class="font-playfair text-center mb-3">Respectful Restoration</h4>
+                        <p class="text-center text-muted">
+                            Every piece is treated with the care and respect it deserves, understanding its historical 
+                            significance and sentimental value.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="philosophy-card p-4 h-100 bg-light rounded-3">
+                        <div class="text-center mb-3">
+                            <i class="fas fa-award fa-3x" style="color: #D4AF37;"></i>
+                        </div>
+                        <h4 class="font-playfair text-center mb-3">Excellence in Craft</h4>
+                        <p class="text-center text-muted">
+                            We combine traditional craftsmanship with modern conservation science to deliver results 
+                            that exceed expectations.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet the Craftsmen -->
+    <section class="py-5" style="background-color: #3E2723;">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-4 font-playfair fw-bold text-white mb-3">
+                    Meet Our Craftsmen
+                </h2>
+                <div class="w-25 mx-auto border-bottom border-3" style="border-color: #D4AF37 !important;"></div>
+                <p class="lead text-white-50 mt-3">The masters behind the magic</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="team-member bg-white rounded-3 overflow-hidden">
+                        <img src="https://picsum.photos/seed/craftsman1/400/400" alt="James Mitchell" class="img-fluid w-100">
+                        <div class="p-4">
+                            <h5 class="font-playfair">James Mitchell</h5>
+                            <p class="small text-muted mb-2">Master Craftsman & Founder</p>
+                            <p class="small">35+ years of experience in antique restoration</p>
+                            <div class="social-links">
+                                <a href="#" class="text-vintage-brown me-2"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="text-vintage-brown"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="team-member bg-white rounded-3 overflow-hidden">
+                        <img src="https://picsum.photos/seed/craftsman2/400/400" alt="Sarah Chen" class="img-fluid w-100">
+                        <div class="p-4">
+                            <h5 class="font-playfair">Sarah Chen</h5>
+                            <p class="small text-muted mb-2">Wood Restoration Specialist</p>
+                            <p class="small">Expert in traditional woodworking techniques</p>
+                            <div class="social-links">
+                                <a href="#" class="text-vintage-brown me-2"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="text-vintage-brown"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="team-member bg-white rounded-3 overflow-hidden">
+                        <img src="https://picsum.photos/seed/craftsman3/400/400" alt="Robert Thompson" class="img-fluid w-100">
+                        <div class="p-4">
+                            <h5 class="font-playfair">Robert Thompson</h5>
+                            <p class="small text-muted mb-2">Upholstery Master</p>
+                            <p class="small">Specialist in period upholstery fabrics</p>
+                            <div class="social-links">
+                                <a href="#" class="text-vintage-brown me-2"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="text-vintage-brown"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="team-member bg-white rounded-3 overflow-hidden">
+                        <img src="https://picsum.photos/seed/craftsman4/400/400" alt="Maria Rodriguez" class="img-fluid w-100">
+                        <div class="p-4">
+                            <h5 class="font-playfair">Maria Rodriguez</h5>
+                            <p class="small text-muted mb-2">Metal & Brass Specialist</p>
+                            <p class="small">Expert in metal conservation and plating</p>
+                            <div class="social-links">
+                                <a href="#" class="text-vintage-brown me-2"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="text-vintage-brown"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workshop Tour -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-4 font-playfair fw-bold text-vintage-brown mb-3">
+                    Workshop Tour
+                </h2>
+                <div class="w-25 mx-auto border-bottom border-3" style="border-color: #D4AF37 !important;"></div>
+                <p class="lead text-muted mt-3">Take a virtual tour of our restoration facility</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="workshop-tour position-relative rounded-3 overflow-hidden">
+                        <img src="https://picsum.photos/seed/workshop-main/600/400" alt="Main Workshop" class="img-fluid w-100">
+                        <div class="tour-overlay position-absolute bottom-0 start-0 end-0 p-4">
+                            <h4 class="text-white font-playfair">Main Workshop</h4>
+                            <p class="text-white-50 small">Our primary restoration space with specialized workstations</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="workshop-tour position-relative rounded-3 overflow-hidden">
+                        <img src="https://picsum.photos/seed/workshop-finish/600/400" alt="Finishing Room" class="img-fluid w-100">
+                        <div class="tour-overlay position-absolute bottom-0 start-0 end-0 p-4">
+                            <h4 class="text-white font-playfair">Finishing Room</h4>
+                            <p class="text-white-50 small">Climate-controlled space for final touches and polishing</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="workshop-tour position-relative rounded-3 overflow-hidden">
+                        <img src="https://picsum.photos/seed/workshop-storage/600/400" alt="Storage Area" class="img-fluid w-100">
+                        <div class="tour-overlay position-absolute bottom-0 start-0 end-0 p-4">
+                            <h4 class="text-white font-playfair">Storage & Archive</h4>
+                            <p class="text-white-50 small">Secure storage for pieces awaiting restoration</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="workshop-tour position-relative rounded-3 overflow-hidden">
+                        <img src="https://picsum.photos/seed/workshop-consultation/600/400" alt="Consultation Room" class="img-fluid w-100">
+                        <div class="tour-overlay position-absolute bottom-0 start-0 end-0 p-4">
+                            <h4 class="text-white font-playfair">Consultation Room</h4>
+                            <p class="text-white-50 small">Where we meet clients and discuss restoration plans</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications & Awards -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-4 font-playfair fw-bold text-vintage-brown mb-3">
+                    Certifications & Awards
+                </h2>
+                <div class="w-25 mx-auto border-bottom border-3" style="border-color: #D4AF37 !important;"></div>
+            </div>
+            
+            <div class="row g-4 text-center">
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="certification-badge p-4">
+                        <i class="fas fa-certificate fa-4x mb-3" style="color: #D4AF37;"></i>
+                        <h6 class="font-playfair">Antique Dealers Association</h6>
+                        <p class="small text-muted">Certified Member</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="certification-badge p-4">
+                        <i class="fas fa-trophy fa-4x mb-3" style="color: #D4AF37;"></i>
+                        <h6 class="font-playfair">Best Restoration 2023</h6>
+                        <p class="small text-muted">Heritage Preservation Award</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="certification-badge p-4">
+                        <i class="fas fa-graduation-cap fa-4x mb-3" style="color: #D4AF37;"></i>
+                        <h6 class="font-playfair">Conservation Certified</h6>
+                        <p class="small text-muted">Professional Conservators</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="certification-badge p-4">
+                        <i class="fas fa-star fa-4x mb-3" style="color: #D4AF37;"></i>
+                        <h6 class="font-playfair">5-Star Excellence</h6>
+                        <p class="small text-muted">Customer Satisfaction</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-5 text-white" style="background-color: #D4AF37;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8" data-aos="fade-right">
+                    <h2 class="display-5 font-playfair fw-bold mb-3">
+                        Join Our Restoration Family
+                    </h2>
+                    <p class="lead mb-0">
+                        Experience the difference that true craftsmanship makes.
+                    </p>
+                </div>
+                <div class="col-lg-4 text-lg-end" data-aos="fade-left">
+                    <a href="quote.html" class="btn btn-light btn-lg px-4 py-3 text-vintage-brown">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-vintage-brown text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="font-playfair mb-3">
+                        <i class="fas fa-crown text-antique-gold me-2"></i>
+                        Antique Restoration Shop
+                    </h5>
+                    <p class="small">
+                        Preserving history through expert craftsmanship and restoration services.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h6 class="font-playfair mb-3">Quick Links</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="index.html" class="text-white-50 text-decoration-none">Home</a></li>
+                        <li><a href="services.html" class="text-white-50 text-decoration-none">Services</a></li>
+                        <li><a href="gallery.html" class="text-white-50 text-decoration-none">Gallery</a></li>
+                        <li><a href="contact.html" class="text-white-50 text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h6 class="font-playfair mb-3">Contact Info</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2">
+                            <i class="fas fa-map-marker-alt text-antique-gold me-2"></i>
+                            123 Heritage Lane, Craft District
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-phone text-antique-gold me-2"></i>
+                            +1 (555) 123-4567
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-envelope text-antique-gold me-2"></i>
+                            info@antiquerestoration.com
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="border-secondary">
+            <div class="text-center small">
+                <p class="mb-0">&copy; 2026 Antique Restoration Shop. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
