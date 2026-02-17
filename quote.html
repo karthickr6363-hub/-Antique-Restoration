@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <title>Request a Quote - Antique Restoration Shop</title>
-    
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -13,18 +15,18 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
-    
-    
+
+
     <style>
         .quote-hero {
             background: linear-gradient(135deg, rgba(62, 39, 35, 0.9) 0%, rgba(212, 175, 55, 0.8) 100%),
-                        url('https://picsum.photos/seed/quote-hero/1920/600') center/cover;
+                url('https://picsum.photos/seed/quote-hero/1920/600') center/cover;
         }
-        
+
         .form-section {
             background: linear-gradient(135deg, #FFF8E7 0%, #FFFDF7 100%);
         }
-        
+
         .upload-area {
             border: 3px dashed #D4AF37;
             border-radius: 15px;
@@ -34,33 +36,33 @@
             cursor: pointer;
             background: rgba(212, 175, 55, 0.05);
         }
-        
+
         .upload-area:hover {
             background: rgba(212, 175, 55, 0.1);
             border-color: #3E2723;
         }
-        
+
         .upload-area.dragover {
             background: rgba(212, 175, 55, 0.2);
             border-color: #3E2723;
             transform: scale(1.02);
         }
-        
+
         .file-preview {
             position: relative;
             display: inline-block;
             margin: 10px;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-        
+
         .file-preview img {
             width: 150px;
             height: 150px;
             object-fit: cover;
         }
-        
+
         .file-remove {
             position: absolute;
             top: 5px;
@@ -76,29 +78,29 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         .form-control:focus,
         .form-select:focus {
             border-color: #D4AF37;
             box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25);
         }
-        
+
         .form-label {
             font-weight: 600;
             color: #3E2723;
             margin-bottom: 0.5rem;
         }
-        
+
         .required {
             color: #dc3545;
         }
-        
+
         .progress-step {
             display: flex;
             align-items: center;
             margin-bottom: 30px;
         }
-        
+
         .step-number {
             width: 40px;
             height: 40px;
@@ -111,31 +113,31 @@
             font-weight: bold;
             margin-right: 15px;
         }
-        
+
         .step-number.completed {
             background: #28a745;
         }
-        
+
         .step-number.active {
             background: #D4AF37;
             box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.3);
         }
-        
+
         .step-content {
             flex: 1;
         }
-        
+
         .step-title {
             font-weight: 600;
             color: #3E2723;
             margin-bottom: 5px;
         }
-        
+
         .step-description {
             color: #6c757d;
             font-size: 14px;
         }
-        
+
         .service-option {
             border: 2px solid #e0e0e0;
             border-radius: 10px;
@@ -144,17 +146,17 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
+
         .service-option:hover {
             border-color: #D4AF37;
             background: rgba(212, 175, 55, 0.05);
         }
-        
+
         .service-option.selected {
             border-color: #D4AF37;
             background: rgba(212, 175, 55, 0.1);
         }
-        
+
         .budget-range {
             appearance: none;
             width: 100%;
@@ -164,7 +166,7 @@
             outline: none;
             transition: background 0.3s;
         }
-        
+
         .budget-range::-webkit-slider-thumb {
             appearance: none;
             width: 20px;
@@ -173,7 +175,7 @@
             background: #D4AF37;
             cursor: pointer;
         }
-        
+
         .budget-range::-moz-range-thumb {
             width: 20px;
             height: 20px;
@@ -181,27 +183,27 @@
             background: #D4AF37;
             cursor: pointer;
         }
-        
+
         .form-wizard {
             display: none;
         }
-        
+
         .form-wizard.active {
             display: block;
         }
-        
+
         .wizard-buttons {
             display: flex;
             justify-content: space-between;
             margin-top: 30px;
         }
-        
+
         .success-message {
             display: none;
             text-align: center;
             padding: 40px;
         }
-        
+
         .success-icon {
             font-size: 80px;
             color: #28a745;
@@ -209,12 +211,14 @@
         }
     </style>
 </head>
+
 <body class="bg-cream-white">
-    
+
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #3E2723;">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="index.html" style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #D4AF37 !important;">
+            <a class="navbar-brand fw-bold" href="index.html"
+                style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #D4AF37 !important;">
                 <i class="fas fa-crown me-2" style="color: #D4AF37;"></i>
                 Antique Restoration
             </a>
@@ -224,7 +228,8 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="homeDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             Home
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="homeDropdown">
@@ -236,7 +241,8 @@
                         <a class="nav-link" href="about.html">About</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             Pages
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="pagesDropdown">
@@ -261,7 +267,8 @@
                         <a class="btn btn-outline-light btn-sm ms-2" href="login.html">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-warning btn-sm ms-2" href="register.html" style="background-color: var(--antique-gold); border-color: var(--antique-gold);">Register</a>
+                        <a class="btn btn-warning btn-sm ms-2" href="register.html"
+                            style="background-color: var(--antique-gold); border-color: var(--antique-gold);">Register</a>
                     </li>
                 </ul>
             </div>
@@ -321,14 +328,15 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <form id="quoteForm" class="needs-validation" novalidate>
-                        
+
                         <!-- Step 1: Item Information -->
                         <div class="form-wizard active" id="step1">
                             <div class="bg-white rounded-4 p-5 shadow-sm" data-aos="fade-up">
                                 <h3 class="font-playfair mb-4">Tell Us About Your Antique</h3>
-                                
+
                                 <div class="mb-4">
-                                    <label for="itemType" class="form-label">Item Type <span class="required">*</span></label>
+                                    <label for="itemType" class="form-label">Item Type <span
+                                            class="required">*</span></label>
                                     <select class="form-select" id="itemType" required>
                                         <option value="">Select item type...</option>
                                         <option value="chair">Chair</option>
@@ -341,14 +349,16 @@
                                     </select>
                                     <div class="invalid-feedback">Please select an item type.</div>
                                 </div>
-                                
+
                                 <div class="mb-4">
-                                    <label for="itemDescription" class="form-label">Description <span class="required">*</span></label>
-                                    <textarea class="form-control" id="itemDescription" rows="4" 
-                                              placeholder="Please describe your item, including any damage, age, materials, etc." required></textarea>
+                                    <label for="itemDescription" class="form-label">Description <span
+                                            class="required">*</span></label>
+                                    <textarea class="form-control" id="itemDescription" rows="4"
+                                        placeholder="Please describe your item, including any damage, age, materials, etc."
+                                        required></textarea>
                                     <div class="invalid-feedback">Please provide a description of your item.</div>
                                 </div>
-                                
+
                                 <div class="mb-4">
                                     <label for="itemAge" class="form-label">Estimated Age</label>
                                     <select class="form-select" id="itemAge">
@@ -360,15 +370,17 @@
                                         <option value="unknown">Unknown</option>
                                     </select>
                                 </div>
-                                
+
                                 <div class="mb-4">
                                     <label class="form-label">Upload Photos <span class="required">*</span></label>
                                     <div class="upload-area" id="uploadArea">
                                         <i class="fas fa-cloud-upload-alt fa-3x mb-3" style="color: #D4AF37;"></i>
                                         <h5>Drag & Drop Images Here</h5>
                                         <p class="text-muted">or click to browse</p>
-                                        <p class="small text-muted">Maximum file size: 5MB. Accepted formats: JPG, PNG</p>
-                                        <input type="file" id="fileInput" multiple accept="image/*" style="display: none;">
+                                        <p class="small text-muted">Maximum file size: 5MB. Accepted formats: JPG, PNG
+                                        </p>
+                                        <input type="file" id="fileInput" multiple accept="image/*"
+                                            style="display: none;">
                                     </div>
                                     <div id="filePreview" class="mt-3"></div>
                                     <div class="invalid-feedback">Please upload at least one photo.</div>
@@ -380,17 +392,18 @@
                         <div class="form-wizard" id="step2">
                             <div class="bg-white rounded-4 p-5 shadow-sm" data-aos="fade-up">
                                 <h3 class="font-playfair mb-4">Select Services Needed</h3>
-                                
+
                                 <div class="service-option" data-service="structural">
                                     <div class="d-flex align-items-center">
                                         <input type="checkbox" class="form-check-input me-3" id="structural">
                                         <div>
                                             <h6 class="mb-1">Structural Repairs</h6>
-                                            <small class="text-muted">Fix broken joints, cracks, and structural damage</small>
+                                            <small class="text-muted">Fix broken joints, cracks, and structural
+                                                damage</small>
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="service-option" data-service="refinishing">
                                     <div class="d-flex align-items-center">
                                         <input type="checkbox" class="form-check-input me-3" id="refinishing">
@@ -400,7 +413,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="service-option" data-service="upholstery">
                                     <div class="d-flex align-items-center">
                                         <input type="checkbox" class="form-check-input me-3" id="upholstery">
@@ -410,17 +423,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="service-option" data-service="metal">
                                     <div class="d-flex align-items-center">
                                         <input type="checkbox" class="form-check-input me-3" id="metal">
                                         <div>
                                             <h6 class="mb-1">Metal Restoration</h6>
-                                            <small class="text-muted">Polish, repair, or replace metal components</small>
+                                            <small class="text-muted">Polish, repair, or replace metal
+                                                components</small>
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="mb-4 mt-4">
                                     <label for="urgency" class="form-label">Timeline</label>
                                     <select class="form-select" id="urgency">
@@ -430,10 +444,11 @@
                                         <option value="express">Express (1 week)</option>
                                     </select>
                                 </div>
-                                
+
                                 <div class="mb-4">
                                     <label for="budget" class="form-label">Budget Range</label>
-                                    <input type="range" class="budget-range" id="budget" min="100" max="10000" value="1000" step="100">
+                                    <input type="range" class="budget-range" id="budget" min="100" max="10000"
+                                        value="1000" step="100">
                                     <div class="d-flex justify-content-between">
                                         <small>$100</small>
                                         <span id="budgetValue" class="fw-bold" style="color: #D4AF37;">$1,000</span>
@@ -447,50 +462,57 @@
                         <div class="form-wizard" id="step3">
                             <div class="bg-white rounded-4 p-5 shadow-sm" data-aos="fade-up">
                                 <h3 class="font-playfair mb-4">Your Information</h3>
-                                
+
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
-                                        <label for="firstName" class="form-label">First Name <span class="required">*</span></label>
+                                        <label for="firstName" class="form-label">First Name <span
+                                                class="required">*</span></label>
                                         <input type="text" class="form-control" id="firstName" required>
                                         <div class="invalid-feedback">Please enter your first name.</div>
                                     </div>
                                     <div class="col-md-6 mb-4">
-                                        <label for="lastName" class="form-label">Last Name <span class="required">*</span></label>
+                                        <label for="lastName" class="form-label">Last Name <span
+                                                class="required">*</span></label>
                                         <input type="text" class="form-control" id="lastName" required>
                                         <div class="invalid-feedback">Please enter your last name.</div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="mb-4">
-                                    <label for="email" class="form-label">Email Address <span class="required">*</span></label>
+                                    <label for="email" class="form-label">Email Address <span
+                                            class="required">*</span></label>
                                     <input type="email" class="form-control" id="email" required>
                                     <div class="invalid-feedback">Please enter a valid email address.</div>
                                 </div>
-                                
+
                                 <div class="mb-4">
-                                    <label for="phone" class="form-label">Phone Number <span class="required">*</span></label>
+                                    <label for="phone" class="form-label">Phone Number <span
+                                            class="required">*</span></label>
                                     <input type="tel" class="form-control" id="phone" required>
                                     <div class="invalid-feedback">Please enter your phone number.</div>
                                 </div>
-                                
+
                                 <div class="mb-4">
-                                    <label for="pickupLocation" class="form-label">Pickup Location <span class="required">*</span></label>
-                                    <textarea class="form-control" id="pickupLocation" rows="3" 
-                                              placeholder="Enter the address where we should pick up the item" required></textarea>
+                                    <label for="pickupLocation" class="form-label">Pickup Location <span
+                                            class="required">*</span></label>
+                                    <textarea class="form-control" id="pickupLocation" rows="3"
+                                        placeholder="Enter the address where we should pick up the item"
+                                        required></textarea>
                                     <div class="invalid-feedback">Please enter a pickup location.</div>
                                 </div>
-                                
+
                                 <div class="mb-4">
                                     <label for="additionalNotes" class="form-label">Additional Notes</label>
-                                    <textarea class="form-control" id="additionalNotes" rows="3" 
-                                              placeholder="Any other information you'd like to share..."></textarea>
+                                    <textarea class="form-control" id="additionalNotes" rows="3"
+                                        placeholder="Any other information you'd like to share..."></textarea>
                                 </div>
-                                
+
                                 <div class="mb-4">
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" id="consent" required>
                                         <label class="form-check-label" for="consent">
-                                            I consent to being contacted about my restoration request and agree to the terms of service.
+                                            I consent to being contacted about my restoration request and agree to the
+                                            terms of service.
                                         </label>
                                         <div class="invalid-feedback">You must agree to the terms to continue.</div>
                                     </div>
@@ -506,7 +528,8 @@
                             <h3 class="font-playfair mb-3">Quote Request Submitted!</h3>
                             <p class="lead">Thank you for your interest in our restoration services.</p>
                             <p>We'll review your request and contact you within 24 hours with a detailed quote.</p>
-                            <a href="index.html" class="btn btn-lg mt-3" style="background-color: #D4AF37; color: white;">
+                            <a href="index.html" class="btn btn-lg mt-3"
+                                style="background-color: #D4AF37; color: white;">
                                 Return to Home
                             </a>
                         </div>
@@ -516,10 +539,12 @@
                             <button type="button" class="btn btn-outline-secondary" id="prevBtn" style="display: none;">
                                 <i class="fas fa-arrow-left me-2"></i> Previous
                             </button>
-                            <button type="button" class="btn" id="nextBtn" style="background-color: #D4AF37; color: white;">
+                            <button type="button" class="btn ms-auto" id="nextBtn"
+                                style="background-color: #D4AF37; color: white;">
                                 Next <i class="fas fa-arrow-right ms-2"></i>
                             </button>
-                            <button type="submit" class="btn" id="submitBtn" style="background-color: #D4AF37; color: white; display: none;">
+                            <button type="submit" class="btn ms-auto" id="submitBtn"
+                                style="background-color: #D4AF37; color: white; display: none;">
                                 Submit Quote Request <i class="fas fa-paper-plane ms-2"></i>
                             </button>
                         </div>
@@ -581,54 +606,54 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/main.js"></script>
-    
+
     <script>
         let currentStep = 1;
         const totalSteps = 3;
         const uploadedFiles = [];
-        
-        $(document).ready(function() {
+
+        $(document).ready(function () {
             // File upload functionality
             const uploadArea = $('#uploadArea');
             const fileInput = $('#fileInput');
             const filePreview = $('#filePreview');
-            
-            uploadArea.on('click', function() {
+
+            uploadArea.on('click', function () {
                 fileInput.click();
             });
-            
-            uploadArea.on('dragover', function(e) {
+
+            uploadArea.on('dragover', function (e) {
                 e.preventDefault();
                 $(this).addClass('dragover');
             });
-            
-            uploadArea.on('dragleave', function(e) {
+
+            uploadArea.on('dragleave', function (e) {
                 e.preventDefault();
                 $(this).removeClass('dragover');
             });
-            
-            uploadArea.on('drop', function(e) {
+
+            uploadArea.on('drop', function (e) {
                 e.preventDefault();
                 $(this).removeClass('dragover');
                 handleFiles(e.originalEvent.dataTransfer.files);
             });
-            
-            fileInput.on('change', function(e) {
+
+            fileInput.on('change', function (e) {
                 handleFiles(e.target.files);
             });
-            
+
             function handleFiles(files) {
                 for (let file of files) {
                     if (file.type.startsWith('image/') && file.size <= 5 * 1024 * 1024) {
                         const reader = new FileReader();
-                        reader.onload = function(e) {
+                        reader.onload = function (e) {
                             const fileId = Date.now() + Math.random();
                             uploadedFiles.push({
                                 id: fileId,
                                 file: file,
                                 url: e.target.result
                             });
-                            
+
                             const preview = $(`
                                 <div class="file-preview" data-file-id="${fileId}">
                                     <img src="${e.target.result}" alt="Preview">
@@ -637,52 +662,52 @@
                                     </button>
                                 </div>
                             `);
-                            
+
                             filePreview.append(preview);
                         };
                         reader.readAsDataURL(file);
                     }
                 }
             }
-            
-            filePreview.on('click', '.file-remove', function() {
+
+            filePreview.on('click', '.file-remove', function () {
                 const fileId = $(this).parent().data('file-id');
                 uploadedFiles = uploadedFiles.filter(f => f.id !== fileId);
                 $(this).parent().remove();
             });
-            
+
             // Budget range slider
-            $('#budget').on('input', function() {
+            $('#budget').on('input', function () {
                 const value = $(this).val();
                 $('#budgetValue').text('$' + parseInt(value).toLocaleString());
             });
-            
+
             // Service options
-            $('.service-option').on('click', function() {
+            $('.service-option').on('click', function () {
                 const checkbox = $(this).find('input[type="checkbox"]');
                 checkbox.prop('checked', !checkbox.prop('checked'));
                 $(this).toggleClass('selected', checkbox.prop('checked'));
             });
-            
+
             // Wizard navigation
-            $('#nextBtn').on('click', function() {
+            $('#nextBtn').on('click', function () {
                 if (validateStep(currentStep)) {
                     if (currentStep < totalSteps) {
                         showStep(currentStep + 1);
                     }
                 }
             });
-            
-            $('#prevBtn').on('click', function() {
+
+            $('#prevBtn').on('click', function () {
                 if (currentStep > 1) {
                     showStep(currentStep - 1);
                 }
             });
-            
+
             function showStep(step) {
                 $('.form-wizard').removeClass('active');
                 $('#step' + step).addClass('active');
-                
+
                 $('.step-number').removeClass('active completed');
                 for (let i = 1; i <= step; i++) {
                     if (i < step) {
@@ -691,45 +716,45 @@
                         $('#step' + i + 'Indicator').addClass('active');
                     }
                 }
-                
+
                 currentStep = step;
                 updateWizardButtons();
             }
-            
+
             function updateWizardButtons() {
                 $('#prevBtn').toggle(currentStep > 1);
                 $('#nextBtn').toggle(currentStep < totalSteps);
                 $('#submitBtn').toggle(currentStep === totalSteps);
             }
-            
+
             function validateStep(step) {
                 let isValid = true;
                 const currentStepElement = $('#step' + step);
-                
+
                 if (step === 1) {
                     const itemType = $('#itemType').val();
                     const description = $('#itemDescription').val();
-                    
+
                     if (!itemType) {
                         $('#itemType').addClass('is-invalid');
                         isValid = false;
                     } else {
                         $('#itemType').removeClass('is-invalid');
                     }
-                    
+
                     if (!description.trim()) {
                         $('#itemDescription').addClass('is-invalid');
                         isValid = false;
                     } else {
                         $('#itemDescription').removeClass('is-invalid');
                     }
-                    
+
                     if (uploadedFiles.length === 0) {
                         isValid = false;
                         alert('Please upload at least one photo of your item.');
                     }
                 }
-                
+
                 if (step === 2) {
                     const servicesSelected = $('.service-option input:checked').length;
                     if (servicesSelected === 0) {
@@ -737,39 +762,39 @@
                         isValid = false;
                     }
                 }
-                
+
                 if (step === 3) {
                     const form = $('#quoteForm')[0];
                     isValid = form.checkValidity();
-                    
+
                     if (!isValid) {
                         form.classList.add('was-validated');
                     }
                 }
-                
+
                 return isValid;
             }
-            
+
             // Form submission
-            $('#quoteForm').on('submit', function(e) {
+            $('#quoteForm').on('submit', function (e) {
                 e.preventDefault();
-                
+
                 if (validateStep(currentStep)) {
                     // Show success message
                     $('.form-wizard, .wizard-buttons').hide();
                     $('#successMessage').fadeIn();
-                    
+
                     // Scroll to top
                     $('html, body').animate({
                         scrollTop: $('.quote-hero').offset().top
                     }, 500);
-                    
+
                     // Here you would normally send the data to your server
                     console.log('Form submitted with data:', {
                         itemType: $('#itemType').val(),
                         description: $('#itemDescription').val(),
                         files: uploadedFiles,
-                        services: $('.service-option input:checked').map(function() {
+                        services: $('.service-option input:checked').map(function () {
                             return $(this).closest('.service-option').data('service');
                         }).get(),
                         contactInfo: {
@@ -785,4 +810,5 @@
         });
     </script>
 </body>
+
 </html>
