@@ -1,4 +1,4 @@
-# Antique Restoration Shop Website
+# Antique Restoration Website
 
 A modern, sophisticated antique restoration website built with HTML, CSS, Bootstrap, and Tailwind CSS. Features a stunning 3-color design scheme with advanced 2026-style animations and interactions.
 
@@ -302,7 +302,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## 👥 Team
 
-- **Lead Developer**: Antique Restoration Shop Web Team
+- **Lead Developer**: Antique Restoration Web Team
 - **Design**: UI/UX Design Team
 - **Content**: Marketing Team
 
@@ -315,6 +315,6 @@ For support or questions:
 
 ---
 
-**© 2026 Antique Restoration Shop. All rights reserved.**
+**© 2026 Antique Restoration. All rights reserved.**
 
 *Built with ❤️ using modern web technologies*

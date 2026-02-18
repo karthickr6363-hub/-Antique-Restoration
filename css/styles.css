@@ -44,8 +44,8 @@ body {
 }
 
 /* Bootstrap 5 navbar-collapse behavior - ensure proper flex display on desktop */
-@media (min-width: 992px) {
-    .navbar-expand-lg .navbar-collapse {
+@media (min-width: 1200px) {
+    .navbar-expand-xl .navbar-collapse {
         display: flex !important;
         flex-basis: auto;
     }
