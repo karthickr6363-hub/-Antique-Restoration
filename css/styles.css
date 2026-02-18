@@ -38,6 +38,9 @@ body {
     left: 0;
     right: 0;
     width: 100%;
+    /* Add padding to increase size */
+    padding-top: 18px !important;
+    padding-bottom: 18px !important;
 }
 
 /* Bootstrap 5 navbar-collapse behavior - ensure proper flex display on desktop */
