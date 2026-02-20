@@ -351,6 +351,10 @@ footer a:hover {
     .display-6 {
         text-align: center !important;
     }
+
+    footer .col-lg-4 {
+        text-align: center !important;
+    }
 }
 
 @media (max-width: 768px) {

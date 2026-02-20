@@ -40,7 +40,7 @@
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
             overflow: hidden;
-            max-width: 1000px;
+            max-width: 500px;
             width: 100%;
         }
 
@@ -158,10 +158,12 @@
         @media (max-width: 768px) {
             .register-left {
                 padding: 40px 30px;
+
             }
 
             .register-right {
                 padding: 30px 20px;
+                max-width: 500px;
             }
         }
     </style>
@@ -173,48 +175,10 @@
     <section class="register-section" style="margin-top: 0;">
         <div class="register-card">
             <div class="row g-0">
-                <!-- Left Side -->
-                <div class="col-lg-5">
-                    <div class="register-left">
-                        <h2 class="mb-4" style="font-family: 'Playfair Display', serif;">
-                            <i class="fas fa-crown me-2"></i>
-                            Join Our Community
-                        </h2>
-                        <p class="mb-4">Create an account to access exclusive features and personalized restoration
-                            services.</p>
 
-                        <div class="benefit-item">
-                            <i class="fas fa-gift"></i>
-                            <span>Exclusive member discounts</span>
-                        </div>
-                        <div class="benefit-item">
-                            <i class="fas fa-bell"></i>
-                            <span>Order status notifications</span>
-                        </div>
-                        <div class="benefit-item">
-                            <i class="fas fa-history"></i>
-                            <span>Order history tracking</span>
-                        </div>
-                        <div class="benefit-item">
-                            <i class="fas fa-star"></i>
-                            <span>Loyalty rewards program</span>
-                        </div>
-                        <div class="benefit-item">
-                            <i class="fas fa-user-shield"></i>
-                            <span>Secure account management</span>
-                        </div>
-
-                        <div class="mt-auto">
-                            <p class="mb-0">Already have an account?</p>
-                            <a href="login.html" class="btn btn-outline-light btn-lg rounded-pill mt-2">
-                                Login Here
-                            </a>
-                        </div>
-                    </div>
-                </div>
 
                 <!-- Right Side -->
-                <div class="col-lg-7">
+                <div class="col-12">
                     <div class="register-right">
                         <div class="text-center mb-4">
                             <a href="index.html" class="text-decoration-none brand-link">
@@ -350,6 +314,11 @@
                                 <i class="fab fa-facebook-f"></i>
                                 Facebook
                             </a>
+                        </div>
+
+                        <div class="text-center mt-4 d-xl-none">
+                            <p class="mb-0">Already have an account? <a href="login.html" class="text-decoration-none"
+                                    style="color: var(--antique-gold);">Login Here</a></p>
                         </div>
                     </div>
                 </div>
